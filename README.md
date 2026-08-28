@@ -9,11 +9,36 @@
 
 ---
 
-## Overview
+## One-Line Install
 
-`ai-toolkit` decouples your personal workflow configurations, system prompt rules, and performance middleware from specific machine environments and editor harnesses. 
+### macOS & Linux
+```bash
+curl -fsSL https://raw.githubusercontent.com/tysongoulding/ai-toolkit/main/install.sh | bash
+```
+> Or install a specific target: `curl -fsSL ... | bash -s -- antigravity` (`claude` | `cursor` | `all`)
 
-When switching between development environments or AI agents, `ai-toolkit` bootstraps your system in a single command across **macOS**, **Linux**, and **Windows**.
+### Windows (PowerShell)
+```powershell
+irm https://raw.githubusercontent.com/tysongoulding/ai-toolkit/main/install.ps1 | iex
+```
+> Or install a specific target: `& ([scriptblock]::Create((irm https://raw.githubusercontent.com/tysongoulding/ai-toolkit/main/install.ps1))) -Target antigravity`
+
+---
+
+## Local Setup
+
+If you prefer to clone locally:
+
+```bash
+git clone --recurse-submodules https://github.com/tysongoulding/ai-toolkit.git
+cd ai-toolkit
+
+# macOS / Linux
+./install.sh all
+
+# Windows (PowerShell)
+.\install.ps1 -Target all
+```
 
 ---
 
@@ -21,10 +46,12 @@ When switching between development environments or AI agents, `ai-toolkit` boots
 
 ```
 ai-toolkit/
+├── install.sh                  # 1-Line unified POSIX installer
+├── install.ps1                 # 1-Line unified Windows PowerShell installer
 ├── .github/workflows/
 │   └── tokscale-cron.yml       # 3x daily automated token telemetry sync
 ├── installers/
-│   ├── install-antigravity.sh  # POSIX (macOS/Linux) Antigravity installer
+│   ├── install-antigravity.sh  # POSIX Antigravity installer
 │   ├── install-antigravity.ps1 # Windows PowerShell Antigravity installer
 │   ├── install-claude.sh       # POSIX Claude Code installer
 │   ├── install-claude.ps1      # Windows PowerShell Claude Code installer
@@ -50,8 +77,6 @@ ai-toolkit/
 
 ## Bundled Tools & Submodules
 
-Each component under `repos/` is linked to a maintained personal fork, allowing independent updates while staying synchronized with upstream developments:
-
 | Tool | Purpose | Upstream Source |
 | :--- | :--- | :--- |
 | **`context-mode`** | MCP server optimizing long-running agent context & file indexing | [`mksglu/context-mode`](https://github.com/mksglu/context-mode) |
@@ -61,64 +86,12 @@ Each component under `repos/` is linked to a maintained personal fork, allowing 
 
 ---
 
-## Quick Start
-
-### 1. Clone with Submodules
-
-```bash
-git clone --recurse-submodules https://github.com/tysongoulding/ai-toolkit.git
-cd ai-toolkit
-```
-
-### 2. Bootstrap Your Target Harness
-
-#### macOS & Linux (Bash / Zsh)
-
-```bash
-# Make installers executable
-chmod +x installers/*.sh
-
-# Antigravity
-./installers/install-antigravity.sh
-
-# Claude Code
-./installers/install-claude.sh
-
-# Cursor IDE
-./installers/install-cursor.sh
-```
-
-#### Windows (PowerShell)
-
-```powershell
-# Antigravity
-./installers/install-antigravity.ps1
-
-# Claude Code
-./installers/install-claude.ps1
-
-# Cursor IDE
-./installers/install-cursor.ps1
-```
-
----
-
 ## Maintenance & Upstream Sync
 
-Fetch and merge latest upstream releases across all submodules:
+Fetch and merge latest upstream releases across all submodules simultaneously:
 
 ```bash
 git submodule update --remote --merge
-```
-
-To sync a specific submodule:
-
-```bash
-cd repos/<tool-name>
-git fetch upstream
-git merge upstream/main
-cd ../..
-git commit -am "chore(deps): update <tool-name> submodule"
 ```
 
 ---
