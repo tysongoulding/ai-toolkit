@@ -1,0 +1,12 @@
+[submodule "repos/context-mode"]
+	path = repos/context-mode
+	url = https://github.com/tysongoulding/context-mode.git
+[submodule "repos/mcp-compressor"]
+	path = repos/mcp-compressor
+	url = https://github.com/tysongoulding/mcp-compressor.git
+[submodule "repos/llmlingua"]
+	path = repos/llmlingua
+	url = https://github.com/tysongoulding/LLMLingua.git
+[submodule "repos/tokscale"]
+	path = repos/tokscale
+	url = https://github.com/tysongoulding/tokscale.git
