@@ -13,7 +13,7 @@
 
 `ai-toolkit` decouples your personal workflow configurations, system prompt rules, and performance middleware from specific machine environments and editor harnesses. 
 
-When switching between development environments or AI agents, `ai-toolkit` bootstraps your system in a single command.
+When switching between development environments or AI agents, `ai-toolkit` bootstraps your system in a single command across **macOS**, **Linux**, and **Windows**.
 
 ---
 
@@ -24,9 +24,12 @@ ai-toolkit/
 ├── .github/workflows/
 │   └── tokscale-cron.yml       # 3x daily automated token telemetry sync
 ├── installers/
-│   ├── install-antigravity.ps1 # Deploys rules & registers MCP servers
-│   ├── install-claude.ps1      # Deploys CLAUDE.md & shared tool packages
-│   └── install-cursor.ps1      # Deploys .cursorrules & editor configurations
+│   ├── install-antigravity.sh  # POSIX (macOS/Linux) Antigravity installer
+│   ├── install-antigravity.ps1 # Windows PowerShell Antigravity installer
+│   ├── install-claude.sh       # POSIX Claude Code installer
+│   ├── install-claude.ps1      # Windows PowerShell Claude Code installer
+│   ├── install-cursor.sh       # POSIX Cursor IDE installer
+│   └── install-cursor.ps1      # Windows PowerShell Cursor IDE installer
 ├── antigravity/
 │   ├── GEMINI.md               # Antigravity system rules & path anchors
 │   └── README.md
@@ -69,16 +72,32 @@ cd ai-toolkit
 
 ### 2. Bootstrap Your Target Harness
 
-Execute the bootstrap script corresponding to your active environment:
+#### macOS & Linux (Bash / Zsh)
+
+```bash
+# Make installers executable
+chmod +x installers/*.sh
+
+# Antigravity
+./installers/install-antigravity.sh
+
+# Claude Code
+./installers/install-claude.sh
+
+# Cursor IDE
+./installers/install-cursor.sh
+```
+
+#### Windows (PowerShell)
 
 ```powershell
-# Antigravity (Rules to ~/.gemini/GEMINI.md + MCP Server Registration)
+# Antigravity
 ./installers/install-antigravity.ps1
 
-# Claude Code (Rules to ~/.claude/CLAUDE.md + Module Dependencies)
+# Claude Code
 ./installers/install-claude.ps1
 
-# Cursor IDE (Rules to ~/.cursorrules + Environment Linkage)
+# Cursor IDE
 ./installers/install-cursor.ps1
 ```
 
@@ -86,7 +105,7 @@ Execute the bootstrap script corresponding to your active environment:
 
 ## Maintenance & Upstream Sync
 
-Fetch and merge the latest upstream releases across all submodules simultaneously:
+Fetch and merge latest upstream releases across all submodules:
 
 ```bash
 git submodule update --remote --merge
