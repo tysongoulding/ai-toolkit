@@ -9,35 +9,54 @@
 
 ---
 
-## One-Line Install
+## One-Line Remote Install
 
 ### macOS & Linux
 ```bash
 curl -fsSL https://raw.githubusercontent.com/tysongoulding/ai-toolkit/main/install.sh | bash
 ```
-> Or install a specific target: `curl -fsSL ... | bash -s -- antigravity` (`claude` | `cursor` | `all`)
+> Install specific target: `curl -fsSL ... | bash -s -- antigravity` (`claude` | `cursor` | `all`)
 
 ### Windows (PowerShell)
 ```powershell
 irm https://raw.githubusercontent.com/tysongoulding/ai-toolkit/main/install.ps1 | iex
 ```
-> Or install a specific target: `& ([scriptblock]::Create((irm https://raw.githubusercontent.com/tysongoulding/ai-toolkit/main/install.ps1))) -Target antigravity`
+> Install specific target: `& ([scriptblock]::Create((irm https://raw.githubusercontent.com/tysongoulding/ai-toolkit/main/install.ps1))) -Target antigravity`
 
 ---
 
-## Local Setup
+## Local Setup & Targets
 
-If you prefer to clone locally:
+Clone the repository with submodules:
 
 ```bash
 git clone --recurse-submodules https://github.com/tysongoulding/ai-toolkit.git
 cd ai-toolkit
+```
 
-# macOS / Linux
-./install.sh all
+### Installation Targets
+
+| Target | Destination | What It Configures |
+| :--- | :--- | :--- |
+| **`antigravity`** | `~/.gemini/GEMINI.md`<br>`~/.gemini/config/mcp_config.json` | • Deploys Antigravity system rules with path anchors<br>• Installs `llmlingua` Python module in editable mode<br>• Builds & registers `mcp-compressor` in MCP config |
+| **`claude`** | `~/.claude/CLAUDE.md` | • Deploys Claude Code directives (stripped of IDE-specific paths)<br>• Installs `llmlingua` Python package<br>• Builds `mcp-compressor` node dependencies |
+| **`cursor`** | `~/.cursorrules` | • Deploys Cursor IDE rules for Composer/Agent mode<br>• Installs `llmlingua` Python package<br>• Builds `mcp-compressor` node dependencies |
+| **`all`** *(default)* | All destinations above | • Executes `antigravity`, `claude`, and `cursor` in sequence for full multi-harness machine bootstrap |
+
+### Local Execution Syntax
+
+```bash
+# macOS & Linux
+./install.sh antigravity
+./install.sh claude
+./install.sh cursor
+./install.sh all        # Default
 
 # Windows (PowerShell)
-.\install.ps1 -Target all
+.\install.ps1 -Target antigravity
+.\install.ps1 -Target claude
+.\install.ps1 -Target cursor
+.\install.ps1 -Target all  # Default
 ```
 
 ---
