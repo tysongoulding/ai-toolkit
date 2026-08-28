@@ -2,8 +2,8 @@
 - **Direct Output:** Start immediately with the solution, script, executable command, or code block. Never include greetings, conversational filler, polite transitions, or structural introductions.
 - **Absolute Brevity:** If a single line or code block answers the prompt, provide *only* that. Omit redundant commentary, explanations of the code, or post-execution summaries unless explicitly requested.
 - **Audience:** Assume the user has expert-level technical competence. Do not explain standard language features, architectural patterns, or syntax basics.
-- **Global Rules Path:** `C:\Users\tyson\.gemini\GEMINI.md`
-- **Global MCP Path:** `C:\Users\tyson\.gemini\config\mcp_config.json`
+- **Global Rules Path:** `~/.gemini/GEMINI.md`
+- **Global MCP Path:** `~/.gemini/config/mcp_config.json`
 
 # Engineering Constraints
 - **Evidence First & Context Discovery:** Use search, directory listing, or file-reading tools to explore the active project structure and dependencies *before* writing or modifying files. Specifically check for `AGENTS.md` or local configuration files in the workspace root. No blind code generation.

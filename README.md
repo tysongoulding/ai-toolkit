@@ -1,11 +1,11 @@
-# AI Harness
+# AI Toolkit
 
-Centralized repository for AI agent harnesses, workflows, configurations, and environment setups across Antigravity, Claude Code, and Cursor.
+Centralized toolkit for AI agent harnesses, workflows, configurations, and environment setups across Antigravity, Claude Code, and Cursor.
 
 ## Structure
 
 ```
-ai_harness/
+ai-toolkit/
 ├── repos/                  # Forked upstream tools as Git Submodules
 │   ├── context-mode/       # Fork of mksglu/context-mode
 │   ├── mcp-compressor/     # Fork of atlassian-labs/mcp-compressor
@@ -26,7 +26,7 @@ ai_harness/
 
 Clone with submodules:
 ```powershell
-git clone --recurse-submodules https://github.com/tysongoulding/ai_harness.git
+git clone --recurse-submodules https://github.com/tysongoulding/ai-toolkit.git
 ```
 
 Run target harness installer:
