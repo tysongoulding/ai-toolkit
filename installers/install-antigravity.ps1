@@ -1,24 +1,30 @@
 # Antigravity Installer & Context Linker
 $ErrorActionPreference = "Stop"
 $HarnessRoot = Split-Path -Parent $PSScriptRoot
-$GeminiConfigDir = "$env:USERPROFILE\.gemini\config"
+$GeminiDir = "$env:USERPROFILE\.gemini"
+$GeminiConfigDir = "$GeminiDir\config"
 
 Write-Host "Setting up Antigravity Harness..."
 
-# 1. Install LLMLingua & Python utilities in editable mode
+# 1. Deploy Global GEMINI.md Rules
+New-Item -ItemType Directory -Force -Path $GeminiDir | Out-Null
+Copy-Item -Path "$HarnessRoot\antigravity\GEMINI.md" -Destination "$GeminiDir\GEMINI.md" -Force
+Write-Host "Deployed rules to $GeminiDir\GEMINI.md"
+
+# 2. Install LLMLingua & Python utilities in editable mode
 if (Test-Path "$HarnessRoot\repos\llmlingua") {
     Write-Host "Installing LLMLingua..."
     python -m pip install -e "$HarnessRoot\repos\llmlingua"
 }
 
-# 2. Build MCP Compressor
+# 3. Build MCP Compressor
 if (Test-Path "$HarnessRoot\repos\mcp-compressor") {
     Write-Host "Building MCP Compressor..."
     npm --prefix "$HarnessRoot\repos\mcp-compressor" ci
     npm --prefix "$HarnessRoot\repos\mcp-compressor" run build --if-present
 }
 
-# 3. Register MCP Server
+# 4. Register MCP Server
 $McpConfigPath = "$GeminiConfigDir\mcp_config.json"
 if (Test-Path $McpConfigPath) {
     $Config = Get-Content $McpConfigPath -Raw | ConvertFrom-Json
